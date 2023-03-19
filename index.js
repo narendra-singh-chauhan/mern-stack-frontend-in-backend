@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
 
 dotenv.config();
 const app = express();
@@ -17,12 +18,12 @@ const user = {
 
 // Production
 if(process.env.NODE_ENV === 'production'){
-    app.use(express.static('client/dist'));
+    app.use(express.static(path.resolve(__dirname, 'client', 'dist')));
 
     app.get('*', (req, res) => {
-        res.sendFile(express.static('client/dist', 'index.html'), function(error){
+        res.sendFile(express.static(path.resolve(__dirname, 'client', 'dist', 'index.html')), function(error){
             if(error){
-                res.status(400).send(error);
+                res.status(400).json({err : error});
             }
         });
     });
