@@ -18,19 +18,15 @@ const user = {
 
 // Production
 if(process.env.NODE_ENV === 'production'){
-    // app.use(express.static(path.resolve(__dirname, 'client', 'dist')));
-
-    // app.get('*', (req, res) => {
-    //     res.sendFile(express.static(path.resolve(__dirname, 'client', 'dist', 'index.html')), function(error){
-    //         if(error){
-    //             res.status(400).json({err : error});
-    //         }
-    //     });
-    // });
+    app.use(express.static(path.resolve(__dirname, 'client', 'dist')));
 
     app.get('*', (req, res) => {
-        res.status(200).json({msg: "Main to chaal rha hu."})
-    })
+        res.sendFile(express.static(path.resolve(__dirname, 'client', 'dist', 'index.html')), function(error){
+            if(error){
+                res.status(400).json({err : error});
+            }
+        });
+    });
 };
 
 
