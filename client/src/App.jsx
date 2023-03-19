@@ -5,9 +5,8 @@ function App() {
   const [data, setData] = useState(null);
 
   const getUser = async () => {
-    const response = await fetch("https://react-node-vercel-2qk7p0qgg-narendrasinghks2019-gmailcom.vercel.app/user");
+    const response = await fetch("/user");
     const user = await response.json();
-    // https://react-node-vercel-2qk7p0qgg-narendrasinghks2019-gmailcom.vercel.app/
 
     setData(user);
   };
