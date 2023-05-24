@@ -5,7 +5,8 @@ function App() {
   const [data, setData] = useState(null);
 
   const getUser = async () => {
-    const response = await fetch("/user");
+    const apiURL = import.meta.env.VITE_APP_API_URL || '';
+    const response = await fetch(`${apiURL}/user`);
     const user = await response.json();
 
     setData(user);
